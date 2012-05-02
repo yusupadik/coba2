@@ -1,0 +1,2 @@
+class CobaController < ApplicationController
+end
