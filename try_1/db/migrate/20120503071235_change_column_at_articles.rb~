@@ -1,0 +1,8 @@
+class ChangeColumnAtArticles < ActiveRecord::Migration
+  def up
+    change_column :articles, :rating, :integer
+  end
+
+  def down
+  end
+end
