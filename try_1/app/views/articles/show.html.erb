@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <h1>Showing Article</h1>
+    <p>
+      <b>Title :</b>
+      <%= @article.title %>
+    </p>
+
+    <p>
+      <b>Body :</b>
+      <%= @article.body %>
+    </p>
+
+    <p>
+      <b>Rating :</b>
+      <%= @article.rating %>
+    </p>
+
+
+    <%= link_to 'Back', articles_path %>
+  </body>
+</html>

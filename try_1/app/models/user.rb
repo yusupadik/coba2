@@ -4,12 +4,8 @@ class User < ActiveRecord::Base
   has_many :shared_articles,
            :class_name => "Article",
            :foreign_key => "user_id",
-           :conditions => "tile ='share'"
+           :conditions => "title like '%share%'"
   has_one  :country
-  
-  def full_name
-    "#{self.first_name} #{self.last_name} "
-  end
   
   validates :firs_name, :presence => true,
                         :length => {:minimum =>1, :maximum => 20},
@@ -25,5 +21,9 @@ class User < ActiveRecord::Base
   
   validates :username, :presence => true,
                        :uniqueness => true
+                       
+  def full_name
+    "#{self.first_name} #{self.last_name} "
+  end                     
 
 end

@@ -3,7 +3,7 @@ Try1::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  #match 'articles_edit/:id',  :to => 'articles#edit'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
@@ -11,7 +11,7 @@ Try1::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+   resources :articles
 
   # Sample resource route with options:
   #   resources :products do

@@ -10,7 +10,7 @@ class Country < ActiveRecord::Base
 
 
   def valid_code
-    self.errors[:code] << "Hanya boleh menggunakan code 'id', 'usa' dan 'frc'" unless code =="id" or code =="usa" or code =="frc"
+    self.errors[:code] << "Hanya boleh menggunakan code 'id', 'usa' dan 'frc'" unless code =="id" || code =="usa" || code =="frc"
   end
 
 end
