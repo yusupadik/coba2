@@ -1,0 +1,17 @@
+
+
+   <p>
+ <%= flash[:notice] %>
+   </p>
+    <h1> Daftar User </h1>
+    <table>
+      <% @users.each do |a|   %>
+       <tr> 
+         <td> <%= a.username %> </td> <td></td> 
+         <td> <%= a.email %> </td> 
+     
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "New", sign_up_path %>
+ 

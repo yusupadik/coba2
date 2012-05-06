@@ -1,6 +1,9 @@
 
-<html>
-  <body>
+
+   <p>
+  <%= flash[:error]  %>
+  <%= flash[:notice] %>
+    </p>
     <h1> Artikel Terkini </h1>
     <table>
       <% @articles.each do |a|   %>
@@ -9,11 +12,19 @@
          <td> <%= a.body %> </td> 
          <td> <%= a.rating %> </td>
          <td> <%= link_to "Tampil", article_path(a.id) %> </td>
-         <td> <%= link_to "Edit", edit_article_path(a.id) %> </td>
-         <td> <%= link_to "Hapus", article_path(a.id), confirm: 'Apakah Anda Yakin?', method: :delete %> </td>
+              <% user = User.find_by_email(current_user.email) %>
+              <% if a.user_id == user.id %> 
+                <%= raw("<td>") %>
+                <%= link_to "Edit", edit_article_path(a.id) %>
+                <%= raw("</td>") %> 
+                <%= raw("<td>") %>
+                <%= link_to "Hapus", article_path(a.id), confirm: 'Apakah Anda Yakin?', method: :delete %>
+                <%= raw("</td>") %>
+             <% end %>
+         
+         
         </tr>
       <% end %>
     </table>
     <%= link_to "New", new_article_path %>
-  </body>
-</html>
+ 

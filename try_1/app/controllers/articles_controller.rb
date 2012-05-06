@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+  before_filter :find_article, :only => [:show, :edit, :update, :destroy]
+  #before_filter :your_article, :only => [ :edit, :destroy]
+  before_filter :require_login, :only => [:new, :create, :edit, :update, :delete]
 
   def index
     @articles = Article.all
@@ -9,7 +12,10 @@ class ArticlesController < ApplicationController
   end
   
   def show
-     @article = Article.find_by_id(params[:id])
+ 
+     @article = Article.find_by_id(params[:id])   
+     @comments = @article.comments
+     @comment = @article.comments.new
   end
   
   def create
@@ -28,6 +34,7 @@ class ArticlesController < ApplicationController
   
   def edit
     @article = Article.find_by_id(params[:id])
+    
   end
   
   def update
@@ -35,7 +42,7 @@ class ArticlesController < ApplicationController
 
     if @article.update_attributes(params[:article])
        flash[:notice] = 'Article was successfully updated.'
-      redirect_to articles_path
+       redirect_to articles_path
     else
       flash[:error] = 'Article was failed to updated.'
       render :edit
@@ -48,5 +55,20 @@ class ArticlesController < ApplicationController
     
     redirect_to articles_path
   end
-
+  
+  private
+    def find_article
+       if Article.find_by_id(params[:id]).nil? 
+        flash[:error] = 'Article was not found.'
+        redirect_to articles_path
+      end
+    end
+    
+   # def your_article
+    # user = User.find_by_email(current_user.email)
+     # unless @article.user_id == user.id
+      #  flash[:notice] = " It's not your article !!!"
+       # redirect_to articles_path
+      #end
+    #end 
 end

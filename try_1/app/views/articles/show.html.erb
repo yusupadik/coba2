@@ -2,7 +2,7 @@
   <body>
     <h1>Showing Article</h1>
     <p>
-      <b>Title :</b>
+      <b>Titlessssss :</b>
       <%= @article.title %>
     </p>
 
@@ -15,6 +15,22 @@
       <b>Rating :</b>
       <%= @article.rating %>
     </p>
+    
+    <!--bagian ini untuk menampilkan comment yang dimiliki oleh article tersebut -->
+    <div id="comments">
+       <% @comments.each do |comment| %>
+         <%= comment.content %><br />
+       <% end %>
+    </div><br /><br />
+  
+    <% unless(current_user.nil?)%> 
+       <%= form_for @comment, :url => comments_path do  |f| -%>
+         <%= f.text_area :content %>
+         <%= f.hidden_field :article_id, :value => @article.id %>
+         <%= submit_tag "comment" %>
+       <% end %>  
+     <% end %>
+    
 
 
     <%= link_to 'Back', articles_path %>

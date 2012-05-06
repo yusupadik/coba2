@@ -1,4 +1,10 @@
 Try1::Application.routes.draw do
+  get "comments/new"
+
+  get "sessions/new"
+
+  get "users/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -12,6 +18,17 @@ Try1::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
    resources :articles
+   
+   
+   get "sign_up" => "users#new", :as => "sign_up"
+   root :to => "users#new"
+   resources :users
+   
+   get "log_in" => "sessions#new", :as => "log_in" 
+   get "log_out" => "sessions#destroy", :as => "log_out"
+   resources :sessions
+   
+   resources :comments
 
   # Sample resource route with options:
   #   resources :products do
