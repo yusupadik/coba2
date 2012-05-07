@@ -6,21 +6,28 @@
     </p>
     <h1> Artikel Terkini </h1>
     <table>
-      <% @articles.each do |a|   %>
+      <% @articles.each do |article|   %>
        <tr> 
-         <td> <%= a.title %> </td> <td></td> 
-         <td> <%= a.body %> </td> 
-         <td> <%= a.rating %> </td>
-         <td> <%= link_to "Tampil", article_path(a.id) %> </td>
-              <% user = User.find_by_email(current_user.email) %>
-              <% if a.user_id == user.id %> 
-                <%= raw("<td>") %>
-                <%= link_to "Edit", edit_article_path(a.id) %>
-                <%= raw("</td>") %> 
-                <%= raw("<td>") %>
-                <%= link_to "Hapus", article_path(a.id), confirm: 'Apakah Anda Yakin?', method: :delete %>
-                <%= raw("</td>") %>
-             <% end %>
+         <td> <%= article.title %> </td> <td></td> 
+         <td> <%= article.body %> </td> 
+         <td> <%= article.rating %> </td>
+         <td> <%= link_to "Tampil", article_path(article.id) %> </td>
+              <% unless current_user.nil?%>
+                <% if current_user.is_admin? %>
+                  <td> <%= link_to "Edit",  edit_article_path(article.id) %> </td>
+                  <td> <%= link_to "Hapus", article_path(article.id), confirm: 'Apakah Anda Yakin?', method: :delete %> </td> 
+                <% else%> 
+                  <% user = User.find_by_email(current_user.email) %>
+                  <% if a.user_id == user.id %> 
+                    <td>
+                    <%= link_to "Edit", edit_article_path(article.id) %>
+                    </td> 
+                    <td>
+                    <%= link_to "Hapus", article_path(article.id), confirm: 'Apakah Anda Yakin?', method: :delete %>
+                    </td>
+                  <% end %>
+                <%end%>
+              <%end%>  
          
          
         </tr>

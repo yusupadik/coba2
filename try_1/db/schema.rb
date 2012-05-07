@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504064607) do
+ActiveRecord::Schema.define(:version => 20120507050637) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120504064607) do
     t.date     "birthday"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.boolean  "is_admin"
   end
 
 end

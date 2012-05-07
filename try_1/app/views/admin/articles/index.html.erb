@@ -1,0 +1,25 @@
+
+
+   <p>
+  <%= flash[:error]  %>
+  <%= flash[:notice] %>
+    </p>
+    <h1> Artikel Terkini </h1>
+    <table>
+      <% @articles.each do |a|   %>
+       <tr> 
+         <td> <%= a.title %> </td> <td></td> 
+         <td> <%= a.body %> </td> 
+         <td> <%= a.rating %> </td>
+         <td> <%= link_to "Show", admin_article_path(a.id) %> </td>
+              <% user = User.find_by_email(current_user.email) %>
+         <td> <%= link_to "Edit", edit_admin_article_path(a.id) %> </td>
+         <td> <%= link_to "Hapus", admin_article_path(a.id), confirm: 'Apakah Anda Yakin?', method: :delete %> </td>
+           
+         
+         
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "New", new_admin_article_path %>
+ 

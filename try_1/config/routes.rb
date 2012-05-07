@@ -29,6 +29,14 @@ Try1::Application.routes.draw do
    resources :sessions
    
    resources :comments
+   
+   namespace :admin do
+     resources :articles
+   end
+   
+   namespace :admin do
+     resources :comments
+   end
 
   # Sample resource route with options:
   #   resources :products do

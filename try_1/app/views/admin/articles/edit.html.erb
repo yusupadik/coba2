@@ -1,0 +1,46 @@
+<html>
+  <body>
+    <h1> Buat Artikel Baru <h1>
+    <%= form_for @article, :url => admin_article_path do |n| %>
+      <% if @article.errors.any? %>
+        <div id="errorExplanation">
+        <p>
+           <%= pluralize(@article.errors.count, "error") %> prohibited this user from being saved:
+        </p>
+        <ul>
+           <% @article.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+           <% end %>
+        </ul>
+        </div>
+      <% end %>
+    
+    <ul>
+      <li>
+        <%= n.label :title  %>
+        <%= n.text_field :title  %>
+      </li>
+      
+      <li>
+        <%= n.label :body  %>
+        <%= n.text_area :body  %>
+      </li>
+      
+      <li>
+        <%= n.label :rating  %>
+        <%= n.text_field :rating  %>
+      </li>
+      
+      <li>
+        <%= n.submit   %>
+      </li>
+    </ul>
+     
+    
+    <% end %>
+    <%= link_to 'Back', admin_articles_path %>
+    
+    
+  </body>
+</html>
+

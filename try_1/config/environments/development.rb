@@ -26,6 +26,11 @@ Try1::Application.configure do
     :enable_starttls_auto => true
   }
 
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "Error Report",
+    :sender_address => %{"notifier" <notifier@example.com>},
+    :exception_recipients => %w{yak.3033@gmail.com}
+  
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
