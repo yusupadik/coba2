@@ -1,0 +1,39 @@
+<h1>Create New Product for Registered Member</h1>
+<%= form_for @product do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Description"  %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :price, "Price ($)"  %><br />
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :weight, "Weight (Kg)"  %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id  %>
+    <%= f.select :category_id, @child_category, { :include_blank => false } %>
+  </div>
+
+
+  <%= f.submit %>
+  
+<% end %>
+<%= link_to "Back", products_path %>

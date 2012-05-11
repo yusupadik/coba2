@@ -1,0 +1,47 @@
+<h1>User Products</h1>
+<!-- <p><%= flash[:error] || flash[:notice] %></p> -->
+<p>Products list from DB</p>
+<table>
+  <tr>
+	<th>id</th>
+	<th>Name</th>
+	<th>Description</th>
+	<th>Price</th>
+	<th>Weight</th>
+	<th>Category</th>
+  </tr>
+  <tr>
+	<% @products.each do |product| %>
+	<td><%= product.id %></td>
+	<td><%= product.name %></td>
+	<td><%= product.description %></td>
+	<td><%= product.price %></td>
+	<td><%= product.weight %></td>
+	<td>
+	  <% unless product.category.name.nil? %>
+	     <%= product.category.name %>
+	  <% else %>   
+	     -
+	  <% end %>   
+	</td>
+
+	<td>
+	  <%= link_to "Show", product_path(product.id) %>
+	  <% unless current_user.nil?%>
+        <% if current_user.is_admin? %>
+	      <%= link_to "Edit", edit_product_path(product.id) %>
+	      <%= link_to 'Delete', product_path(product.id) , confirm: 'Do you want to delete this product?', method: :delete %>
+	    <% else%> 
+          <% if product.user_id == current_user.id %> 
+	      <%= link_to "Edit", edit_product_path(product.id) %>
+	      <%= link_to 'Delete', product_path(product.id) , confirm: 'Do you want to delete this product?', method: :delete %>
+	    <% end %>
+      <%end%>
+   <%end%>  
+	</td>
+  </tr>
+  <% end %>
+</table>     
+</ul>
+<%= link_to "Create New product", new_product_path %>
+

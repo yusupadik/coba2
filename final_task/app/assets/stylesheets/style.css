@@ -1,0 +1,66 @@
+.container {
+	width: 1000px;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+.clear{
+  clear: both;
+}
+
+header{
+  
+  padding-bottom: none;
+  display: block;
+}
+
+header h1{
+  text-shadow: 2px 1px 15px #111;
+  font-size: 3.2em;
+  margin-bottom: none;
+  text-align: center;
+  
+}
+
+header nav {
+  text-align: center;
+  }
+
+header nav ul {
+  width: 957px;
+  float: right;
+}
+
+header nav ul li{
+  float: left;
+  list-style-type: none;
+  margin: 0 auto;
+  padding:10px 20px ;
+  
+}
+
+header nav ul li a{
+  text-decoration: none;
+}
+aside{
+ float: left;
+ width: 300px;
+}
+
+aside nav ul li{  
+  list-style-type: none;
+}
+
+aside nav ul li a {
+ text-decoration: none;
+}
+
+#content{
+ float: right;
+ width: 670px;
+}
+
+#content .listproducts table{
+ margin: 10px;
+ padding: 10px;
+}

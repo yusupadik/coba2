@@ -1,0 +1,13 @@
+<% @parent= Category.parent_cat %>
+<nav>
+<% @parent.each do |parent|  %>
+  <ul> 
+    <%= parent.name %>
+     <% parent.child_categories.each do |child| %>
+       <li> <%= link_to child.name, category_path(child.id) %></li>
+    <% end %>
+    
+  </ul>
+
+<%end %>
+</nav>

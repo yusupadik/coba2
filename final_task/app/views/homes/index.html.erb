@@ -1,0 +1,43 @@
+<div id="list_products">
+
+  <h2> Newest Listing Product </h2>
+  <% i= 1 %>
+  <table>
+    <tr>
+    <% @products.each do |product| %>
+    
+      <% if i <= 3 %>
+        <td>
+          <p>Name :  <%= product.name%> </p>
+          <p>Price : <%= product.price%> $ </p> 
+          <%= link_to "See more",  product_path(product.id) %>
+        </td>
+      <% else %>
+        </tr>
+        <tr>
+          <td>
+            <p>Name :  <%= product.name%> </p>
+            <p>Price :  <%= product.price%> $ </p>
+            <%= link_to "See more",  product_path(product.id) %>
+          </td>
+        <% i = 0%>    
+      <% end %>
+      <% i+= 1 %>
+    <% end %>
+    </tr>
+  </table>
+</div>
+
+<div id="article_list">
+
+  <h2> Newest Articles </h2>
+  
+    <% @articles.each do |article| %>
+      <p> <%= article.title %> </p>
+      
+      <p> <%= truncate(article.body, :length => 20) %> <%= link_to "...More Detail",  article_path(article.id) %> </p>
+      </br>
+      
+    <% end %>
+
+</div>

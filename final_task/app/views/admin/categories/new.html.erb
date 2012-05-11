@@ -1,0 +1,16 @@
+<h2> New category </h2>
+
+<%= form_for @category, :url => admin_categories_path do |new| %>
+  
+  <ul>
+    <li>
+      <%= new.label :name  %>
+      <%= new.text_field :name  %>
+    </li>
+    <li>
+      <%= new.label :parent_id  %>
+      <%= new.select :parent_id, @parent_category, { :include_blank => true } %>
+    </li>
+  </ul>
+  <%= new.submit %>
+<% end %>

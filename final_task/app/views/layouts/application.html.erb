@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FinalTask</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "style" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">	
+    <header>	
+      <h1>Welcome to my  Store </h1>
+      <%= flash[:error]%>
+      <nav>
+		<ul>
+	      <li>
+			<a>    
+	        <% if current_user.nil? %>
+	          <%= link_to "Sign up", sign_up_path %>
+	        <% else %>
+	          <%= link_to "Home", root_path %>  
+	        <% end %>
+	        </a>
+	      </li>
+	      <li>  	
+	        <a> <%= link_to "Products", products_path %> </a>
+	     </li>
+	      <li>  
+	        <a> <%= link_to "Article", articles_path %> </a>
+	      </li>  
+	      <% unless current_user.nil?%>
+	        <% if current_user.iss_admin %>
+	        <li> <a> <%= link_to "Categories", admin_categories_path %> </a> </li>   
+	        <%end%>
+	      <%end%>
+	    </ul>	
+	  </nav>	
+    </header>
+    <aside>
+	      <%= raw(welcome_text) %>
+	      <% if current_user.nil? %>
+	        <%= render :partial => "sessions/new" %>
+          <% else %>
+            <%= render :partial => "layouts/side" %>
+            <%= render :partial => "categories/index" %>
+            <div id="listProduct">
+              <ul>
+              </ul>
+            </div> 
+          <% end %>
+	   
+	  </aside> 
+	  
+	  <div id="content">  	  
+        <%= yield %>
+      </div>
+      
+    
+  </div>
+</body>
+</html>

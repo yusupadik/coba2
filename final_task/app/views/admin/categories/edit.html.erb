@@ -1,0 +1,16 @@
+<h2> Edit category </h2>
+
+<%= form_for @category, :url => admin_category_path do |category| %>
+  
+  <ul>
+    <li>
+      <%= category.label :name  %>
+      <%= category.text_field :name  %>
+    </li>
+    <li>
+      <%= category.label :parent_id  %>
+      <%= category.select :parent_id, @parent_category, { :include_blank => true } %>
+    </li>
+  </ul>
+  <%= category.submit %>
+<% end %>

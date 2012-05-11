@@ -1,0 +1,31 @@
+<h2>User profile </h2>
+
+<table>
+ 
+    <tr>
+      <td> Name </td> <td>:</td> <td> <%= @user.name %> </td>
+    </tr>
+    <tr>
+      <td> Email </td> <td>:</td> <td> <%= @user.email %> </td>
+    </tr>
+    <tr>
+      <td> Phone </td> <td>:</td> <td> <%= @user.phone_number %> </td>
+    </tr>
+    <tr>
+      <td> Birthday </td> <td>:</td> <td> <%= @user.birthday %> </td>
+    </tr>
+    <tr>
+      <td> Gender </td> <td>:</td> <% if @user.gender.nil? %>
+                                    <td> Woman </td>
+                               <%  else %>
+                                    <td> Man </td>
+                               <% end %>
+    <tr>
+      <td> Facebook </td> <td>:</td> <td> <%= @user.facebook %> </td>
+    </tr>
+    <tr>
+      <td> Blog </td> <td>:</td> <td> <%= @user.blog %> </td>
+    </tr>       
+  
+    <%= link_to "Edit Your profile", edit_user_path(current_user.id) %>
+</table>

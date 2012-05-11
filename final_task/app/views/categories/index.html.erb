@@ -1,0 +1,10 @@
+<% @parent.each do |parent|  %>
+  <ul> 
+    <%= parent.name %>
+     <% parent.child_categories.each do |child| %>
+       <li> <%= child.name %> </li>
+    <% end %>
+    
+  </ul>
+
+<%end %>
