@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   has_many :products,  :dependent => :destroy
-  has_many :child_categories,
+  has_many :child_categories, :dependent => :destroy,
            :class_name => "Category",
            :foreign_key => "parent_id"
   
